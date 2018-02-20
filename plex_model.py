@@ -16,7 +16,6 @@ class Movies(BaseModel):
     duration = CharField()
     genres = CharField()
     last_viewed_at = CharField()
-#    media = CharField()
     rating = CharField()
     release_date = CharField()
     roles = CharField()
