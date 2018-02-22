@@ -1,9 +1,9 @@
 from tkinter import *
 from plex_model import *
+from tkinter import messagebox
 
 movie_list = []
 list_count = 0
-
 
 
 def search():
@@ -14,8 +14,9 @@ def search():
         lblTitle.configure(text='Title:  {}'.format(k))
         lblSummary.configure(text='Summary: {}'.format(v))
         return list_count
-        
+
     database.close()
+
 
 def next_record():
     try:
@@ -28,6 +29,7 @@ def next_record():
     except IndexError:
         messagebox.showinfo('No more movies', 'Out of Movies')
 
+
 def prev_record():
     try:
         global list_count
@@ -38,15 +40,9 @@ def prev_record():
         return list_count
     except IndexError:
         messagebox.showinfo('No more movies', 'Out of Movies')
-        
-                               
-            
-        
+
 
 window = Tk()
-
-
-
 
 window.title('Plex Library Database')
 radMovie = Radiobutton(window, text='Movie', value=1)
@@ -63,11 +59,11 @@ radMovie.grid(column=0, row=0, padx=5, pady=5)
 radTV.grid(column=1, row=0, padx=5, pady=5)
 query.grid(column=0, row=1, padx=5, pady=20, columnspan=5)
 search_btn.grid(column=10, row=1, padx=5, pady=5)
-next_btn.grid(column=11, row=1, padx=5, pady=5)
-prev_btn.grid(column=12, row=1, padx=5, pady=5)
+next_btn.grid(column=12, row=1, padx=5, pady=5)
+prev_btn.grid(column=11, row=1, padx=5, pady=5)
 lblTitle.grid(column=0, row=3, padx=5, pady=5)
 lblSummary.grid(column=0, row=4, padx=5, pady=5)
 
 
-window.geometry('500x200')
+window.geometry('650x400')
 window.mainloop()
