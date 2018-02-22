@@ -63,6 +63,7 @@ while not done:
 Search movie title to get movie info.
 N) for next movie
 P) for previous movie
+N) for new movie search
 Q) to quit
 ------------------------------------------
 """)
