@@ -20,17 +20,22 @@ def db_search(movie_title):
 
 
 def print_list():
+    global count
     clear_screen()
-    print('Results for: {}'.format(movie_title))
-    for k, v in movie_list[count].items():
-        print('Title:', k)
-        print('Duration:', v['Duration'])
-        print('Content Rating:', v['Content Rating'])
-        print('\n')
-        print('Summary:', v['Summary'])
-        print('\n')
-        print('{} out of {}'.format(count + 1, len(movie_list)))
-        print('-' * 40)
+    try:
+        print('Results for: {}'.format(movie_title))
+        for k, v in movie_list[count].items():
+            print('Title:', k)
+            print('Duration:', v['Duration'])
+            print('Content Rating:', v['Content Rating'])
+            print('\n')
+            print('Summary:', v['Summary'])
+            print('\n')
+            print('{} out of {}'.format(count + 1, len(movie_list)))
+            print('-' * 40)    
+        return count
+    except IndexError:
+        print('Movie not found')
 
 
 def next_record():
@@ -38,6 +43,7 @@ def next_record():
     try:
         count += 1
         print_list()
+        return count
     except IndexError:
         print('Out of movies')
 
@@ -47,6 +53,7 @@ def prev_record():
     try:
         count -= 1
         print_list()
+        return count
     except IndexError:
         print("Out of movies")
 
@@ -55,9 +62,10 @@ def new_movie():
     global movie_list
     del movie_list
     movie_list = []
-
+    return movie_list
 
 ## menu system that gives pages and a way to scroll the pages
+clear_screen()
 while not done:
     print("""
 Search movie title to get movie info.
@@ -75,6 +83,7 @@ Q) to quit
     elif movie_title == 'P':
         prev_record()
     elif movie_title == 'M':
+        clear_screen()
         new_movie()
     else:
         db_search(movie_title)
